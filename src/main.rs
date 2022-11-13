@@ -32,12 +32,15 @@ fn main() {
 
         thread::spawn(|| execute::query_info(&CURRENT_SEQ));
 
+        thread::sleep(Duration::from_millis(10));
+
         let count = CURRENT_SEQ.load(Ordering::Relaxed);
         if (count % 100 == 0) {
             let mut duration = SystemTime::now().duration_since(start).unwrap().as_millis();
             if duration == 0 {
                 duration = 1;
             }
+            println!("{}", duration);
             println!(
                 "============> prove per second: {}",
                 count * 1000 / (duration as usize)

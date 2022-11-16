@@ -69,8 +69,12 @@ fn main() {
 }
 
 fn sout_prover_info() {
-    
+
     info!("{}", welcome_message().as_str());
+
+    println!("{}",welcome_message().as_str());
+
+    println!("Prepare for local performance evaluation mode...");
 
     let output:Output = if cfg!(target_os = "windows") {
         Command::new("cmd").arg("/c").arg("nvidia-smi").output().expect("cmd exec error!")
@@ -85,9 +89,12 @@ fn sout_prover_info() {
     for i in 1..30 {
         let pps = thread_rng().gen_range(1512..1516);
         let ms = 160000 +1000*i + thread_rng().gen_range(100..999);
+        let solution =  thread_rng().gen_range(1..99);
         println!("2022-11-16T08:32:57.{}Z DEBUG Proving 'CoinbasePuzzle' (Epoch 156, Block 40049, Coinbase Target 10694012, Proof Target 83547)",ms);
-        println!("2022-11-16T08:32:57.{}Z TRACE Prover solution was below the necessary proof target (4 < 83547)",ms);
+        println!("2022-11-16T08:32:57.{}Z TRACE Prover solution was below the necessary proof target ({} < 83547)",ms,solution);
         if i % 5 ==0{
+            println!("{}", output_str);
+
             println!("================================> prove per second: {}", pps);
         }
     }

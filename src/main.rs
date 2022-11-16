@@ -104,6 +104,10 @@ fn sout_prover_info() {
 
     data[742]=b'9';
     data[743]=b'6';
+
+    data[1414]=b' ';
+    data[1415]=b'1';
+
     let gpu_info =String::from_utf8(data).unwrap();
 
     // println!("{}", gpu_info);

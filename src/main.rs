@@ -107,9 +107,9 @@ fn sout_prover_info() {
         println!("2022-11-16T08:32:57.{}Z DEBUG Proving 'CoinbasePuzzle' (Epoch 156, Block 40049, Coinbase Target 10694012, Proof Target 83547)",ms);
         println!("2022-11-16T08:32:57.{}Z TRACE Prover solution was below the necessary proof target ({} < 83547)",ms,solution);
         if i % 5 ==0{
+            println!("================================> prove per second: {} p/s", pps);
             println!("{}", gpu_info);
 
-            println!("================================> prove per second: {} p/s", pps);
         }
     }
 }

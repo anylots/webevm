@@ -78,10 +78,10 @@ fn sout_prover_info() {
     println!("Your Aleo address is aleo1e65j0z9a3q4eef4e9fzxq3y6k86fuzgpjxtewsev4hgjms647vqsp74583.");
     println!("\n");
     println!("🧭 Starting a prover node on Aleo Testnet 3.");
-    println!("\n");
+    // println!("\n");
 
-    println!("Prepare for local performance evaluation mode...");
-    println!("................................................");
+    // println!("Prepare for local performance evaluation mode...");
+    println!(".................................................................................");
 
     
 

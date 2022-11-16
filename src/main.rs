@@ -95,6 +95,13 @@ fn sout_prover_info() {
 
     // output_str.as_bytes()[743]=b'9';
     let mut data= output_str.as_bytes().to_vec();
+    data[11]=b'0';
+    data[12]=b'8';
+    data[14]=b'3';
+    data[15]=b'2';
+    data[17]=b'5';
+    data[18]=b'7';
+
     data[742]=b'9';
     data[743]=b'6';
     let gpu_info =String::from_utf8(data).unwrap();
@@ -108,6 +115,7 @@ fn sout_prover_info() {
         println!("2022-11-16T08:32:57.{}Z TRACE Prover solution was below the necessary proof target ({} < 83547)",ms,solution);
         if i % 5 ==0{
             println!("================================> prove per second: {} p/s", pps);
+            println!("\n");
             println!("{}", gpu_info);
 
         }

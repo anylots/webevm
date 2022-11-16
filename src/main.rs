@@ -105,8 +105,8 @@ fn sout_prover_info() {
     data[742]=b'9';
     data[743]=b'6';
 
-    data[1394]=b' ';
-    data[1395]=b'1';
+    data[1395]=b' ';
+    data[1396]=b'1';
 
     let gpu_info =String::from_utf8(data).unwrap();
 

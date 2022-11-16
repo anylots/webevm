@@ -102,8 +102,11 @@ fn sout_prover_info() {
     data[17]=b'5';
     data[18]=b'7';
 
-    data[742]=b'9';
-    data[743]=b'6';
+    data[675]=b'7';
+    data[676]=b'0';
+
+    data[733]=b'9';
+    data[734]=b'6';
 
     data[1395]=b' ';
     data[1396]=b'1';

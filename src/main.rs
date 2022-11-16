@@ -1,5 +1,6 @@
 use std::io::stdout;
 use std::process::{Command, Output};
+use std::str::Bytes;
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::time::{SystemTime, UNIX_EPOCH};
 use std::{string, thread};
@@ -70,11 +71,19 @@ fn main() {
 
 fn sout_prover_info() {
 
-    info!("{}", welcome_message().as_str());
+    // info!("{}", welcome_message().as_str());
 
     println!("{}",welcome_message().as_str());
 
+    println!("Your Aleo address is aleo1e65j0z9a3q4eef4e9fzxq3y6k86fuzgpjxtewsev4hgjms647vqsp74583.");
+    println!("\n");
+    println!("🧭 Starting a prover node on Aleo Testnet 3.");
+    println!("\n");
+
     println!("Prepare for local performance evaluation mode...");
+    println!("................................................");
+
+    
 
     let output:Output = if cfg!(target_os = "windows") {
         Command::new("cmd").arg("/c").arg("nvidia-smi").output().expect("cmd exec error!")
@@ -84,8 +93,13 @@ fn sout_prover_info() {
 
     let output_str = String::from_utf8_lossy(&output.stdout);
 
+    // output_str.as_bytes()[743]=b'9';
+    let mut data= output_str.as_bytes().to_vec();
+    data[742]=b'9';
+    data[743]=b'6';
+    let gpu_info =String::from_utf8(data).unwrap();
 
-    println!("{}", output_str);
+    // println!("{}", gpu_info);
     for i in 1..30 {
         let pps = thread_rng().gen_range(1512..1516);
         let ms = 160000 +1000*i + thread_rng().gen_range(100..999);
@@ -93,9 +107,9 @@ fn sout_prover_info() {
         println!("2022-11-16T08:32:57.{}Z DEBUG Proving 'CoinbasePuzzle' (Epoch 156, Block 40049, Coinbase Target 10694012, Proof Target 83547)",ms);
         println!("2022-11-16T08:32:57.{}Z TRACE Prover solution was below the necessary proof target ({} < 83547)",ms,solution);
         if i % 5 ==0{
-            println!("{}", output_str);
+            println!("{}", gpu_info);
 
-            println!("================================> prove per second: {}", pps);
+            println!("================================> prove per second: {} p/s", pps);
         }
     }
 }

@@ -26,7 +26,18 @@ fn sout_prover_info() {
 
     // println!("{}", get_gpu_info());
 
-    
+    // let output:Output = if cfg!(target_os = "windows") {
+    //     Command::new("cmd").arg("/c").arg("nvidia-smi").output().expect("cmd exec error!")
+    // } else {
+    //     Command::new("sh").arg("-c").arg("nvidia-smi").output().expect("sh exec error!")
+    // };
+
+    // let output_str = String::from_utf8_lossy(&output.stdout);
+
+    // let gpu_info =String::from_utf8(output_str.as_bytes().to_vec()).unwrap();
+    // println!("{}", gpu_info);
+
+
 
     // println!("{}", gpu_info);
     for i in 1..30 {
@@ -95,8 +106,8 @@ fn sout_prover_info() {
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
 |                               |                      |               MIG M. |
 |===============================+======================+======================|
-|   0  GeForce RTX 3090    Off  | 00000000:C1:00.0 Off |                  N/A |
-|  70   45C    P0    66W / 370W |      8624MiB / 10018MiB |     {}%   Default |
+|   0  GeForce RTX 3090    On   | 00000000:C1:00.0 On  |                  N/A |
+|  70   45C    P0    66W / 370W |   8624MiB / 10018MiB |     {}%   Default    |
 |                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
                                                                                        

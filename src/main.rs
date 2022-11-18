@@ -32,12 +32,6 @@ fn sout_prover_info() {
     //     Command::new("sh").arg("-c").arg("nvidia-smi").output().expect("sh exec error!")
     // };
 
-    // let output_str = String::from_utf8_lossy(&output.stdout);
-
-    // let gpu_info =String::from_utf8(output_str.as_bytes().to_vec()).unwrap();
-    // println!("{}", gpu_info);
-
-
 
     // println!("{}", gpu_info);
     for i in 1..30 {
@@ -95,8 +89,8 @@ fn sout_prover_info() {
 
         let load = thread_rng().gen_range(91..98);
 
-        let mut gpu_info =String::new();
-        gpu_info += 
+        let mut gpu_info_3080 =String::new();
+        gpu_info_3080 += 
         &format!("
 {}       
 +-----------------------------------------------------------------------------+
@@ -106,7 +100,7 @@ fn sout_prover_info() {
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
 |                               |                      |               MIG M. |
 |===============================+======================+======================|
-|   0  GeForce RTX 3090    On   | 00000000:C1:00.0 On  |                  N/A |
+|   0  GeForce RTX 3080    On   | 00000000:C1:00.0 On  |                  N/A |
 |  70   45C    P0    66W / 370W |   8624MiB / 10018MiB |     {}%   Default    |
 |                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
@@ -118,5 +112,5 @@ fn sout_prover_info() {
 |=============================================================================|
 |   1 running processes found                                                 |
 +-----------------------------------------------------------------------------+",time, load);
-        gpu_info
+gpu_info_3080
     }

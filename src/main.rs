@@ -36,13 +36,13 @@ fn sout_prover_info() {
     // println!("{}", gpu_info);
     for i in 1..30 {
 
-        let gpu_info = get_gpu_info();
+        let gpu_info = get_gpu3090_info();
         let time = chrono::offset::Local::now();
 
         let pps = thread_rng().gen_range(1885..1930);
         let ms = 160000 +1000*i + thread_rng().gen_range(100..999);
         let solution =  thread_rng().gen_range(128..356);
-        println!("{}T{}Z DEBUG Proving 'CoinbasePuzzle' (Epoch 265, Block 43156, Coinbase Target 1124012, Proof Target 96501)",time.date_naive(),time.time());
+        println!("{}T{}Z DEBUG Proving 'CoinbasePuzzle' (Epoch 461, Block 43467, Coinbase Target 1146597, Proof Target 96132)",time.date_naive(),time.time());
         println!("{}T{}Z TRACE Prover solution was below the necessary proof target ({} < 102631)",time.date_naive(),time.time(), solution);
         if i % 5 ==0{
             println!("================================> prove per second: {} p/s", pps);
@@ -87,7 +87,7 @@ fn sout_prover_info() {
         // println!("{}",time.date_naive());
         // println!("{}",time.time());
 
-        let load = thread_rng().gen_range(91..98);
+        let load = thread_rng().gen_range(86..92);
 
         let mut gpu_info_3080 =String::new();
         gpu_info_3080 += 
@@ -111,6 +111,43 @@ fn sout_prover_info() {
 |        ID   ID                                                   Usage      |
 |=============================================================================|
 |   1 running processes found                                                 |
++-----------------------------------------------------------------------------+",time, load);
+gpu_info_3080
+    }
+
+
+
+    fn get_gpu3090_info()->String{
+
+        let time = chrono::offset::Local::now();
+        // println!("{}",time.date_naive());
+        // println!("{}",time.time());
+
+        let load = thread_rng().gen_range(91..98);
+
+        let mut gpu_info_3080 =String::new();
+        gpu_info_3080 += 
+        &format!("
+{}       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 520.56.06    Driver Version: 520.56.06    CUDA Version: 11.8     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0   GeForce RTX 3090   Off  | 00000000:01:00.0 Off |                  N/A |
+| 36%   42C    P8    24W / 350W |    781MiB / 24576MiB |     {}%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|    0   N/A  N/A       802      G   /usr/lib/xorg/Xorg                 35MiB |
+|    0   N/A  N/A      1281      G   /opt/snarkOS                      736MiB |
 +-----------------------------------------------------------------------------+",time, load);
 gpu_info_3080
     }

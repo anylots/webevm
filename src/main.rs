@@ -7,14 +7,12 @@ use webevm::service::execute;
 static CURRENT_SEQ: AtomicUsize = AtomicUsize::new(0);
 
 fn main() {
-
     println!("execute starting!");
-    let uniswap: AppInfo = AppInfo {
+    let mut uniswap: AppInfo = AppInfo {
         name: String::from("uniswap"),
         app_type: String::from("dex"),
         tvl: 10000,
     };
-
 
     let uniswap_s: AppInfo = AppInfo {
         name: String::from("uniswap"),
@@ -22,12 +20,17 @@ fn main() {
         tvl: 10000,
     };
 
+    let a = &mut uniswap;
+    // let b = &mut uniswap;
+    a.app_type = "gsgs".to_string();
+    println!("{}", a.app_type);
+    // println!("{}", b.app_type);
+
     let app_msg = execute::query_info(uniswap, uniswap_s);
     println!("{}", app_msg);
 
-    execute_parallel();
+    // execute_parallel();
 }
-
 
 fn execute_parallel() {
     let start = SystemTime::now();

@@ -31,26 +31,41 @@ fn sout_prover_info() {
     // } else {
     //     Command::new("sh").arg("-c").arg("nvidia-smi").output().expect("sh exec error!")
     // };
+    // let output_str = String::from_utf8_lossy(&output.stdout);
 
+    let output:Output = if cfg!(target_os = "windows") {
+        Command::new("cmd").arg("/c").arg("nvidia-smi").output().expect("cmd exec error!")
+    } else {
+        Command::new("sh").arg("-c").arg("lspci | grep -i vga").output().expect("sh exec error!")
+    };
+    let output_str = String::from_utf8_lossy(&output.stdout);
+    
+
+    
+    println!("{}", output_str.contains("3080"));
+    println!("{}", output_str.contains("3090")||output_str.contains("2204"));
+
+
+    println!("{}", output_str);
 
     // println!("{}", gpu_info);
-    for i in 1..30 {
+    // for i in 1..30 {
 
-        let gpu_info = get_gpu3090_info();
-        let time = chrono::offset::Local::now();
+    //     let gpu_info = get_gpu3090_info();
+    //     let time = chrono::offset::Local::now();
 
-        let pps = thread_rng().gen_range(1885..1930);
-        let ms = 160000 +1000*i + thread_rng().gen_range(100..999);
-        let solution =  thread_rng().gen_range(128..356);
-        println!("{}T{}Z DEBUG Proving 'CoinbasePuzzle' (Epoch 461, Block 43467, Coinbase Target 1146597, Proof Target 96132)",time.date_naive(),time.time());
-        println!("{}T{}Z TRACE Prover solution was below the necessary proof target ({} < 102631)",time.date_naive(),time.time(), solution);
-        if i % 5 ==0{
-            println!("================================> prove per second: {} p/s", pps);
-            println!("\n");
-            println!("{}", gpu_info);
+    //     let pps = thread_rng().gen_range(1885..1930);
+    //     let ms = 160000 +1000*i + thread_rng().gen_range(100..999);
+    //     let solution =  thread_rng().gen_range(128..356);
+    //     println!("{}T{}Z DEBUG Proving 'CoinbasePuzzle' (Epoch 461, Block 43467, Coinbase Target 1146597, Proof Target 96132)",time.date_naive(),time.time());
+    //     println!("{}T{}Z TRACE Prover solution was below the necessary proof target ({} < 102631)",time.date_naive(),time.time(), solution);
+    //     if i % 5 ==0{
+    //         println!("================================> prove per second: {} p/s", pps);
+    //         println!("\n");
+    //         println!("{}", gpu_info);
 
-        }
-    }
+    //     }
+    // }
 }
 
 

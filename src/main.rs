@@ -15,6 +15,8 @@ struct Test {
 
 fn sout_prover_info() {
     println!("{}", welcome_message().as_str());
+    thread::sleep(Duration::from_millis(800));
+
 
     println!(
         "Your Aleo address is aleo1xf4vzvtxf277qqcauxnnjguht0af4kpfr2t68exylnzs62xrcv8s2f2mn4."
@@ -25,8 +27,10 @@ fn sout_prover_info() {
 
     // println!("Prepare for local performance evaluation mode...");
     println!(".................................................................................");
+    thread::sleep(Duration::from_millis(800));
 
     println!("{}", get_gpu_info());
+    thread::sleep(Duration::from_millis(800));
 
     let mut i = 0;
     loop {
@@ -44,6 +48,8 @@ fn sout_prover_info() {
             solution
         );
         if i % 5 == 0 {
+            println!("\n");
+
             println!(
                 "================================> prove per second: {} p/s",
                 pps

@@ -33,7 +33,7 @@ fn sout_prover_info() {
         let gpu_info = get_gpu_info();
         let time = chrono::offset::Local::now();
 
-        let pps = thread_rng().gen_range(800..900);
+        let pps = thread_rng().gen_range(900..1000);
         let ms = 160000 + 1000 * i + thread_rng().gen_range(100..999);
         let solution = thread_rng().gen_range(128..356);
         println!("{}T{}Z DEBUG Proving 'CoinbasePuzzle' (Epoch 1246, Block 243467, Coinbase Target 41146597, Proof Target 96132)",time.date_naive(),time.time());

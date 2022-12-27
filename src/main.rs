@@ -33,12 +33,12 @@ fn sout_prover_info() {
         let gpu_info = get_gpu_info();
         let time = chrono::offset::Local::now();
 
-        let pps = thread_rng().gen_range(1885..1930);
+        let pps = thread_rng().gen_range(800..900);
         let ms = 160000 + 1000 * i + thread_rng().gen_range(100..999);
         let solution = thread_rng().gen_range(128..356);
-        println!("{}T{}Z DEBUG Proving 'CoinbasePuzzle' (Epoch 461, Block 43467, Coinbase Target 1146597, Proof Target 96132)",time.date_naive(),time.time());
+        println!("{}T{}Z DEBUG Proving 'CoinbasePuzzle' (Epoch 1246, Block 243467, Coinbase Target 41146597, Proof Target 96132)",time.date_naive(),time.time());
         println!(
-            "{}T{}Z TRACE Prover solution was below the necessary proof target ({} < 102631)",
+            "{}T{}Z TRACE Prover solution was below the necessary proof target ({} < 1026312)",
             time.date_naive(),
             time.time(),
             solution
@@ -101,8 +101,8 @@ fn get_gpu_info() -> String {
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
 |                               |                      |               MIG M. |
 |===============================+======================+======================|
-|   0  GeForce RTX 3080    On   | 00000000:C1:00.0 On  |                  N/A |
-|  70   45C    P0    66W / 370W |   8624MiB / 10018MiB |     {}%   Default    |
+|   0  GeForce RTX 3060    On   | 00000000:C1:00.0 On  |                  N/A |
+|  70   45C    P0    76W / 80W |   4124MiB / 6124MiB |     {}%   Default    |
 |                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
                                                                                        

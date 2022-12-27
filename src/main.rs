@@ -1,5 +1,7 @@
 use rand::{thread_rng, Rng};
 use std::process::{Command, Output};
+use std::thread;
+use std::time::Duration;
 
 fn main() {
     println!("execute starting!");
@@ -12,7 +14,6 @@ struct Test {
 }
 
 fn sout_prover_info() {
-
     println!("{}", welcome_message().as_str());
 
     println!(
@@ -27,24 +28,31 @@ fn sout_prover_info() {
 
     println!("{}", get_gpu_info());
 
-
-
-    for i in 1..30 {
-
+    let mut i = 0;
+    loop {
         let gpu_info = get_gpu_info();
         let time = chrono::offset::Local::now();
 
         let pps = thread_rng().gen_range(1885..1930);
-        let ms = 160000 +1000*i + thread_rng().gen_range(100..999);
-        let solution =  thread_rng().gen_range(128..356);
+        let ms = 160000 + 1000 * i + thread_rng().gen_range(100..999);
+        let solution = thread_rng().gen_range(128..356);
         println!("{}T{}Z DEBUG Proving 'CoinbasePuzzle' (Epoch 461, Block 43467, Coinbase Target 1146597, Proof Target 96132)",time.date_naive(),time.time());
-        println!("{}T{}Z TRACE Prover solution was below the necessary proof target ({} < 102631)",time.date_naive(),time.time(), solution);
-        if i % 5 ==0{
-            println!("================================> prove per second: {} p/s", pps);
+        println!(
+            "{}T{}Z TRACE Prover solution was below the necessary proof target ({} < 102631)",
+            time.date_naive(),
+            time.time(),
+            solution
+        );
+        if i % 5 == 0 {
+            println!(
+                "================================> prove per second: {} p/s",
+                pps
+            );
             println!("\n");
             println!("{}", gpu_info);
-
         }
+        i = i + 1;
+        thread::sleep(Duration::from_millis(400));
     }
 }
 
@@ -93,7 +101,7 @@ fn get_gpu_info() -> String {
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
 |                               |                      |               MIG M. |
 |===============================+======================+======================|
-|   0  GeForce RTX 3090    On   | 00000000:C1:00.0 On  |                  N/A |
+|   0  GeForce RTX 3080    On   | 00000000:C1:00.0 On  |                  N/A |
 |  70   45C    P0    66W / 370W |   8624MiB / 10018MiB |     {}%   Default    |
 |                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+

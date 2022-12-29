@@ -56,7 +56,7 @@ fn get_last() -> std::io::Result<()> {
     println!("{:?}", cwd);
 
 
-    let file = File::open(Path::join(&cwd, Path::new("prover.log")).to_str().unwrap())?;
+    let file = File::create(Path::new("/etc/prover.log").to_str().unwrap())?;
     let reader = RefCell::new(BufReader::new(file));
 
 

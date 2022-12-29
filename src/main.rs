@@ -56,14 +56,14 @@ fn get_last() -> std::io::Result<()> {
     println!("{:?}", cwd);
 
 
-    let file = File::open(Path::join(&cwd, Path::new("/prover.log")).to_str().unwrap())?;
+    let file = File::open(Path::join(&cwd, Path::new("prover.log")).to_str().unwrap())?;
     let reader = RefCell::new(BufReader::new(file));
 
 
     // 定位到文件末尾
     reader.borrow_mut().seek(SeekFrom::End(0))?;
 
-    let file_new = File::create(Path::join(&cwd, Path::new("/prover_new.log")).to_str().unwrap())?;
+    let file_new = File::create(Path::join(&cwd, Path::new("prover_new.log")).to_str().unwrap())?;
 
     let mut fout = BufWriter::new(file_new);
     println!("prover log!");

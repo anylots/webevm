@@ -11,6 +11,8 @@ use std::io::BufWriter;
 
 use std::cell::RefCell;
 use std::io::{BufRead, BufReader, Seek, SeekFrom};
+use std::env;
+use std::path::Path;
 
 fn main() {
     println!("execute starting!");
@@ -49,17 +51,20 @@ fn ope_line(line: &String) -> String {
 }
 
 fn get_last() -> std::io::Result<()> {
-    let file = File::open("./prover.log")?;
+
+    let cwd = env::current_dir().unwrap();
+
+    let file = File::open(Path::join(&cwd, Path::new("/prover.log")).to_str().unwrap())?;
     let reader = RefCell::new(BufReader::new(file));
 
-    println!("prover log!");
 
     // 定位到文件末尾
     reader.borrow_mut().seek(SeekFrom::End(0))?;
 
-    let file_new = File::create("./prover_new.log").unwrap();
+    let file_new = File::create(Path::join(&cwd, Path::new("/prover_new.log")).to_str().unwrap())?;
 
     let mut fout = BufWriter::new(file_new);
+    println!("prover log!");
 
     // 不断检查文件是否有新内容
     loop {

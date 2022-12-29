@@ -52,6 +52,8 @@ fn get_last() -> std::io::Result<()> {
     let file = File::open("./prover.log")?;
     let reader = RefCell::new(BufReader::new(file));
 
+    println!("prover log!");
+
     // 定位到文件末尾
     reader.borrow_mut().seek(SeekFrom::End(0))?;
 

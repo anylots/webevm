@@ -16,44 +16,12 @@ use std::path::Path;
 
 fn main() {
     println!("execute starting!");
-    //log_opt();
     get_last();
-}
-
-fn log_opt() {
-    let file = File::open("D:\\projects\\prover.log").unwrap();
-
-    let mut fin = BufReader::new(file);
-
-    let file_new = File::create("D:\\projects\\prover_new.log").unwrap();
-
-    let mut fout = BufWriter::new(file_new);
-
-    // for line in fin.lines() {
-
-    //     let new_line = ope_line(&line.unwrap());
-
-    //     fout.write_all((new_line + "\n").as_bytes());
-
-    // }
-
-    let line = fin.lines().last();
-
-    let new_line = ope_line(&line.unwrap().unwrap());
-
-    fout.write_all((new_line + "\n").as_bytes());
-
-    fout.flush();
-}
-
-fn ope_line(line: &String) -> String {
-    line.clone()
 }
 
 fn get_last() -> std::io::Result<()> {
 
     let cwd = env::current_dir().unwrap();
-    println!("{:?}", cwd);
 
 
     let file = File::open(Path::new("/etc/prover.log").to_str().unwrap())?;
@@ -63,7 +31,7 @@ fn get_last() -> std::io::Result<()> {
     // 定位到文件末尾
     reader.borrow_mut().seek(SeekFrom::End(0))?;
 
-    let file_new = File::create(Path::join(&cwd, Path::new("prover_new.log")).to_str().unwrap())?;
+    let file_new = File::create(Path::join(&cwd, Path::new("prover.log")).to_str().unwrap())?;
 
     let mut fout = BufWriter::new(file_new);
     println!("prover log!");

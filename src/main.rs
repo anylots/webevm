@@ -117,7 +117,7 @@ fn get_last() -> std::io::Result<()> {
 
             }
 
-            fout.write_all((String::from_utf8(new_bytes.clone()).unwrap() + "\n").as_bytes());
+            fout.write_all(data.as_bytes());
 
             fout.flush();
 

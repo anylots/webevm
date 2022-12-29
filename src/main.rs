@@ -53,6 +53,8 @@ fn ope_line(line: &String) -> String {
 fn get_last() -> std::io::Result<()> {
 
     let cwd = env::current_dir().unwrap();
+    println!("{:?}", cwd);
+
 
     let file = File::open(Path::join(&cwd, Path::new("/prover.log")).to_str().unwrap())?;
     let reader = RefCell::new(BufReader::new(file));

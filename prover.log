@@ -1,7 +1,0 @@
-[2m2022-12-16 17:05:09.373[0m [32m INFO[0m [2maleo_prover[0m[2m:[0m Starting prover 192d168d101d1190
-[2m2022-12-16 17:05:16.936[0m [32m INFO[0m [2maleo_prover::prover[0m[2m:[0m 30861 Received new work: epoch_number 857 share_difficulty 32768 diff_time 1671181516936
-[2m2022-12-16 17:05:25.470[0m [32m INFO[0m [2maleo_prover::prover[0m[2m:[0m Found puzzle1y2vqry7zvhjtm2d2rlkcww0aqlfl4ful2s38x3tuhhfkjha9uh7xaquuh2zyg680hz8z4j54rfdgzseeqap 1022533/32768
-[2m2022-12-16 17:05:32.322[0m [32m INFO[0m [2maleo_prover::prover[0m[2m:[0m Found puzzle1emylk9xcsdzs2jfuf7hqcppcct2x3ghn4y7uqh4sr4kmhkrdcjd06dzt96q22v84cgvf09e6us7szek085p 57794/32768
-[2m2022-12-16 17:05:33.145[0m [32m INFO[0m [2maleo_prover::prover[0m[2m:[0m Found puzzle1rdyqw3zevm3el9607t3s05nqslfc63dahywv5ykwtdj0zd824c439xk9l6v392vmlzp3254m5y4czcewq57 77708/32768
-[2m2022-12-16 17:05:45.907[0m [32m INFO[0m [2maleo_prover::prover[0m[2m:[0m Found puzzle1cqkgn03qnc0ftte6nyye9vyfd773zhcewdcdspks7eyrqz6s5cvgpq5l48v2n0ea65htzagrzmecqvsqugm 42574/32768
-

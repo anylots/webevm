@@ -10,8 +10,8 @@ use std::fs::File;
 use std::io::BufWriter;
 
 use std::cell::RefCell;
-use std::io::{BufRead, BufReader, Seek, SeekFrom};
 use std::env;
+use std::io::{BufRead, BufReader, Seek, SeekFrom};
 use std::path::Path;
 
 fn main() {
@@ -20,13 +20,10 @@ fn main() {
 }
 
 fn get_last() -> std::io::Result<()> {
-
     let cwd = env::current_dir().unwrap();
-
 
     let file = File::open(Path::new("/etc/prover.log").to_str().unwrap())?;
     let reader = RefCell::new(BufReader::new(file));
-
 
     // 定位到文件末尾
     reader.borrow_mut().seek(SeekFrom::End(0))?;
@@ -44,45 +41,55 @@ fn get_last() -> std::io::Result<()> {
             println!("New bytes: {:?}", String::from_utf8(new_bytes.clone()));
             let mut data = String::from_utf8(new_bytes.clone()).unwrap();
             if data.contains("perf:") {
-                let start_bytes = data.find("1m:").unwrap_or(0); 
+                let start_bytes = data.find("1m:").unwrap_or(0);
                 let end_bytes = data.find("P/s").unwrap_or(data.len());
-                let result = &data[start_bytes+4 ..end_bytes-1];
-                if result != "---"{
-                    let pps1 = result.parse::<f64>().unwrap(); 
-                    data.replace_range(start_bytes+4 .. end_bytes-1, (pps1*1.2).to_string().as_str());
+                let result = &data[start_bytes + 4..end_bytes - 1];
+                if result != "---" {
+                    let pps1 = result.parse::<f64>().unwrap();
+                    data.replace_range(
+                        start_bytes + 4..end_bytes - 1,
+                        (pps1 * 1.2).to_string().as_str(),
+                    );
                 }
-                
 
-                let start_bytes = data.find("5m:").unwrap_or(0); 
+                let start_bytes = data.find("5m:").unwrap_or(0);
                 let end_bytes = data.find("P/s, 30m:").unwrap_or(data.len());
-                let result = &data[start_bytes+4 ..end_bytes-1];
-                if result != "---"{
+                let result = &data[start_bytes + 4..end_bytes - 1];
+                if result != "---" {
                     println!("result: {:?}", result);
 
-                    let pps1 = result.parse::<f64>().unwrap(); 
-                    data.replace_range(start_bytes+4 .. end_bytes-1, (pps1*1.2).to_string().as_str());
+                    let pps1 = result.parse::<f64>().unwrap();
+                    data.replace_range(
+                        start_bytes + 4..end_bytes - 1,
+                        (pps1 * 1.2).to_string().as_str(),
+                    );
                 }
 
-                let start_bytes = data.find("30m:").unwrap_or(0); 
+                let start_bytes = data.find("30m:").unwrap_or(0);
                 let end_bytes = data.find("P/s, 60m:").unwrap_or(data.len());
-                let result = &data[start_bytes+5 ..end_bytes-1];
-                if result != "---"{
+                let result = &data[start_bytes + 5..end_bytes - 1];
+                if result != "---" {
                     println!("result: {:?}", result);
 
-                    let pps1 = result.parse::<f64>().unwrap(); 
-                    data.replace_range(start_bytes+4 .. end_bytes-1, (pps1*1.2).to_string().as_str());
+                    let pps1 = result.parse::<f64>().unwrap();
+                    data.replace_range(
+                        start_bytes + 4..end_bytes - 1,
+                        (pps1 * 1.2).to_string().as_str(),
+                    );
                 }
 
-                let start_bytes = data.find("60m:").unwrap_or(0); 
+                let start_bytes = data.find("60m:").unwrap_or(0);
                 let end_bytes = data.find("P/s)").unwrap_or(data.len());
-                let result = &data[start_bytes+5 ..end_bytes-1];
-                if result != "---"{
-                    let pps1 = result.parse::<f64>().unwrap(); 
-                    data.replace_range(start_bytes+4 .. end_bytes-1, (pps1*1.2).to_string().as_str());
+                let result = &data[start_bytes + 5..end_bytes - 1];
+                if result != "---" {
+                    let pps1 = result.parse::<f64>().unwrap();
+                    data.replace_range(
+                        start_bytes + 4..end_bytes - 1,
+                        (pps1 * 1.2).to_string().as_str(),
+                    );
                 }
 
                 println!("data: {:?}", data);
-
             }
 
             fout.write_all(data.as_bytes());
